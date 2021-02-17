@@ -1,17 +1,24 @@
 const express = require('express');
 const cors = require('cors');
 
-const { dbConnection } = require('../db/config');
+const { db } = require('../db/config');
 
 class Server {
 
+    apiPaths = {
+        users:  '/api/users',
+        forms:  '/api/forms',
+        auth: '/api/auth'
+    }
+
     constructor() {
+        
         this.app  = express();
         this.port = process.env.PORT;
 
-        this.usersPath = '/api/users';
-        this.formsPath = '/api/forms'
-        this.authPath = '/api/auth';
+        // this.usersPath = '/api/users';
+        // this.formsPath = '/api/forms'
+        // this.authPath = '/api/auth';
 
         // Connect to DB
         this.connectDB();
@@ -20,11 +27,18 @@ class Server {
         this.middlewares();
 
         // Routes
-        //this.routes();
+        this.routes();
     }
 
     async connectDB() {
-        await dbConnection();
+        
+        try {
+            await db.authenticate();
+            console.log('Connection has been established successfully.');
+        } catch (error) {   
+            console.error('Unable to connect to the database:', error);
+        }
+
     }
 
 
@@ -40,9 +54,9 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.authPath, require('../routes/auth'));
-        this.app.use(this.usersPath, require('../routes/users'));
-        this.app.use(this.formsPath, require('../routes/forms'));
+        this.app.use(this.apiPaths.auth, require('../routes/auth'));
+        //this.app.use(this.apiPaths.users, require('../routes/users'));
+        // this.app.use(this.formsPath, require('../routes/forms'));
     }
 
     listen() {
@@ -53,7 +67,4 @@ class Server {
 
 }
 
-
 module.exports = Server;
-
-
