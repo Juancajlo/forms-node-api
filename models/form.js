@@ -1,16 +1,13 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Form extends Model {
-    static associate({ User, Question, Menu }) {
-      this.belongsTo(User, { foreignKey: 'userId' });
-      this.hasMany(Question, { foreignKey: 'formId' });
-      this.hasOne(Menu, { foreignKey: 'subMenuId' });
-    }
-  };
-  Form.init({
+const { DataTypes, sequelize } = require("sequelize");
+const db = require("../models");
+const { User, UserForm } = require("../models");
+
+// const {User} = require("../models/user");
+// const { UserForm } = require("../models/userform");
+
+console.log(db)
+
+const Form = db.define("Form", {
     title: {
       type: DataTypes.STRING,  
       allowNull: false,
@@ -28,9 +25,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {
-    sequelize,
-    tableName: 'forms',
-    modelName: 'Form',
-  });
-  return Form;
+    tableName: 'Form'
+});
+
+
+Form.belongsToMany(User, { foreignKey: 'formId', through: UserForm, as: "users" });
+// Form.hasMany(Question, { foreignKey: 'formId' });
+// Form.hasOne(Menu, { foreignKey: 'subMenuId' });
+
+
+module.exports = {
+  Form
 };

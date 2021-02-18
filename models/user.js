@@ -1,14 +1,11 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    static associate({ Form }) {
-      this.hasMany(Form, { foreignKey: 'userId' });
-    }
-  };
-  User.init({
+const { DataTypes } = require("sequelize");
+const db  = require("../models");
+
+const { UserForm } = require("../models/userform")
+
+console.log(db)
+
+const User = db.sequelize.define("User",{
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -38,15 +35,14 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false,
     },    
   }, {
-    sequelize,
-    tableName: 'users',
-    modelName: 'User',
+    tableName: 'User',
   });
-  return User;
+
+
+
+User.belongsToMany(Form, {foreignKey: 'userId', through: UserForm, as: "forms"});
+
+
+module.exports = {
+  User
 };
-
-
-
-// const User = db.define('User',{});
-
-// export default User;
