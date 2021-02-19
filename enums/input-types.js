@@ -1,8 +1,8 @@
 const inputValues = [
-    'STRING',
-    'INT',
-    'BOOLEAN'
-]
+    "STRING",
+    "INTEGER",
+    "BOOLEAN"
+];
 
 module.exports = {
     inputValues

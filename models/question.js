@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Question extends Model {
     static associate({ Answer, Form }) {
-      this.belongsTo(Form, { foreignKey: 'formId' });
+      this.belongsTo(Form, { foreignKey: 'formId', as: 'form' });
       this.hasOne(Answer, { foreignKey: 'questionId' });
     }
   };
@@ -14,10 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    formId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "Form",
+        key: "id",
+      },
+    }
   }, {
     sequelize,
-    tableName: 'questions',
-    modelName: 'Question',
+    tableName: 'Question',
   });
   return Question;
 };

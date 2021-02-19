@@ -1,4 +1,4 @@
-const {inputValues} = require('./input-types');
+const {inputValues} = require('../enums/input-types');
 
 'use strict';
 const {
@@ -7,7 +7,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Answer extends Model {
     static associate({ Question }) {
-      this.belongsTo(Question, { foreignKey: 'questionId' });
+      this.belongsTo(Question, { foreignKey: 'questionId', as: 'question' });
     }
   };
   Answer.init({
@@ -20,10 +20,17 @@ module.exports = (sequelize, DataTypes) => {
       values: inputValues,
       allowNull: false,
     },
+    questionId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "Question",
+        key: "id",
+      },
+    }
   }, {
     sequelize,
-    tableName: 'answers',
-    modelName: 'Answer',
+    tableName: 'Answer',
   });
   return Answer;
 };

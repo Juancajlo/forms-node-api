@@ -1,25 +1,24 @@
 'use strict';
-
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('answers', {
+    await queryInterface.createTable('Form', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      questionId: {
-        type: DataTypes.INTEGER,
+      title: {
+        type: DataTypes.STRING,  
         allowNull: false,
       },
-      input: {
+      description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      input_type: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      completed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('answers');
+    await queryInterface.dropTable('Form');
   }
 };

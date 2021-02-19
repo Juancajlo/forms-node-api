@@ -1,28 +1,32 @@
 'use strict';
+
+const {inputValues} = require('../enums/input-types');
+
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('Form', {
+    await queryInterface.createTable('Answer', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      // subMenuId: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      // },
-      title: {
-        type: DataTypes.STRING,  
-        allowNull: false,
+      questionId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: "Question",
+          key: "id",
+        },
       },
-      description: {
+      input: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      completed: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
+      input_type: {
+        type: DataTypes.ENUM,
+        values: inputValues,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +39,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('Form');
+    await queryInterface.dropTable('Answer');
   }
 };

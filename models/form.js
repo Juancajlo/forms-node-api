@@ -1,37 +1,35 @@
-const { DataTypes, sequelize } = require("sequelize");
-const db = require("../models");
-const { User, UserForm, Sequelize } = require("../models");
-
-// const {User} = require("../models/user");
-// const { UserForm } = require("../models/userform");
-
-const Form = db.define("Form", {
-    title: {
-      type: DataTypes.STRING,  
-      allowNull: false,
+"use strict";
+module.exports = (sequelize, DataTypes) => {
+  const Form = sequelize.define(
+    "Form",
+    {
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      completed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    completed: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    subMenuId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-  }, {
-    tableName: 'Form'
-});
+    {
+      tableName: "Form",
+    }
+  );
 
+  Form.associate = function(models) {
+    Form.belongsToMany(models.User, {
+      foreignKey: "formId",
+      through: models.UserForm,
+      as: "users",
+    });
+    Form.hasOne(models.Menu, {foreignKey: "formId", as: "menu"})
+    Form.hasMany(models.Question, {foreignKey: "formId", as: "questions"})
+  };
 
-Form.belongsToMany(User, { foreignKey: 'formId', through: UserForm, as: "users" });
-// Form.hasMany(Question, { foreignKey: 'formId' });
-// Form.hasOne(Menu, { foreignKey: 'subMenuId' });
-
-
-module.exports = {
-  Form
+  return Form;
 };
