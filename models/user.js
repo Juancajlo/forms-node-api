@@ -3,8 +3,6 @@ const db  = require("../models");
 
 const { UserForm } = require("../models/userform")
 
-console.log(db)
-
 const User = db.sequelize.define("User",{
     username: {
       type: DataTypes.STRING,

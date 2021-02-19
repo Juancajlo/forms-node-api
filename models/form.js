@@ -1,11 +1,9 @@
 const { DataTypes, sequelize } = require("sequelize");
 const db = require("../models");
-const { User, UserForm } = require("../models");
+const { User, UserForm, Sequelize } = require("../models");
 
 // const {User} = require("../models/user");
 // const { UserForm } = require("../models/userform");
-
-console.log(db)
 
 const Form = db.define("Form", {
     title: {
