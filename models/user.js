@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "User",
+      tableName: "User"
     }
   );
 
@@ -44,6 +44,13 @@ module.exports = (sequelize, DataTypes) => {
       as: "forms",
     });
   };
+
+  User.prototype.toJSON =  function () {
+    var values = Object.assign({}, this.get());
+  
+    delete values.password;
+    return values;
+  }
 
   return User;
 };

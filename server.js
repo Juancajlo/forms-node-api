@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 
 class Server {
@@ -41,7 +42,11 @@ class Server {
     this.app.use(cors());
 
     // Read and body parser
-    this.app.use(express.json());
+    // parse application/x-www-form-urlencoded
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+
+    // parse application/json
+    this.app.use(bodyParser.json());
 
     // Public folder
     this.app.use(express.static("public"));
