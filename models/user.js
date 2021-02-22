@@ -33,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "User"
+      tableName: "User",
     }
   );
 
-  User.associate = function(models) {
+  User.associate = function (models) {
     User.belongsToMany(models.Form, {
       foreignKey: "userId",
       through: models.UserForm,
@@ -45,12 +45,12 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  User.prototype.toJSON =  function () {
+  User.prototype.toJSON = function () {
     var values = Object.assign({}, this.get());
-  
+
     delete values.password;
     return values;
-  }
+  };
 
   return User;
 };

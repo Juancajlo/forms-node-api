@@ -21,14 +21,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Form.associate = function(models) {
+  Form.associate = function (models) {
     Form.belongsToMany(models.User, {
       foreignKey: "formId",
       through: models.UserForm,
       as: "users",
     });
-    Form.hasOne(models.Menu, {foreignKey: "formId", as: "menu"})
-    Form.hasMany(models.Question, {foreignKey: "formId", as: "questions"})
+    Form.hasOne(models.Menu, { foreignKey: "formId", as: "menu" });
+    Form.hasMany(models.Question, { foreignKey: "formId", as: "questions" });
   };
 
   return Form;

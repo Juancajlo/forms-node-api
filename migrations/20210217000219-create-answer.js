@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 
-const {inputValues} = require('../enums/input-types');
+const { inputValues } = require("../enums/input-types");
 
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('Answer', {
+    await queryInterface.createTable("Answer", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
       },
       questionId: {
         type: DataTypes.INTEGER,
@@ -30,15 +30,15 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE
-      }
+        type: DataTypes.DATE,
+      },
     });
   },
   down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('Answer');
-  }
+    await queryInterface.dropTable("Answer");
+  },
 };

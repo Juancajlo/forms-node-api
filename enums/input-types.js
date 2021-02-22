@@ -1,9 +1,5 @@
-const inputValues = [
-    "STRING",
-    "INTEGER",
-    "BOOLEAN"
-];
+const inputValues = ["STRING", "INTEGER", "BOOLEAN"];
 
 module.exports = {
-    inputValues
-}
+  inputValues,
+};

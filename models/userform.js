@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  UserForm.associate = function(models) {
+  UserForm.associate = function (models) {
     UserForm.belongsTo(models.User, { foreignKey: "userId", as: "user" });
     UserForm.belongsTo(models.Form, { foreignKey: "formId", as: "form" });
   };

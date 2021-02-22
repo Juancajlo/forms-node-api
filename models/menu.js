@@ -29,16 +29,16 @@ module.exports = (sequelize, DataTypes) => {
           model: "Form",
           key: "id",
         },
-      }
+      },
     },
     {
       tableName: "Menu",
     }
   );
-  Menu.associate = function(models) {
+  Menu.associate = function (models) {
     Menu.hasMany(Menu, { foreignKey: "subMenuId", as: "subMenu" });
     Menu.belongsTo(Menu, { foreignKey: "id", as: "parentMenu" });
-    Menu.belongsTo(models.Form, { foreignKey: 'formId', as: "form" });
+    Menu.belongsTo(models.Form, { foreignKey: "formId", as: "form" });
   };
   return Menu;
 };

@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('Form', {
+    await queryInterface.createTable("Form", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
       },
       title: {
-        type: DataTypes.STRING,  
+        type: DataTypes.STRING,
         allowNull: false,
       },
       description: {
@@ -22,15 +22,15 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE
-      }
+        type: DataTypes.DATE,
+      },
     });
   },
   down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('Form');
-  }
+    await queryInterface.dropTable("Form");
+  },
 };
