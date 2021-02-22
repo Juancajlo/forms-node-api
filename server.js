@@ -7,6 +7,7 @@ class Server {
   apiPaths = {
     users: "/api/users",
     forms: "/api/forms",
+    menus: "/api/menus",
     auth: "/api/auth",
   };
 
@@ -14,28 +15,12 @@ class Server {
     this.app = express();
     this.port = process.env.PORT;
 
-    // this.usersPath = '/api/users';
-    // this.formsPath = '/api/forms'
-    // this.authPath = '/api/auth';
-
-    // Connect to DB
-    //this.connectDB();
-
     // Middlewares
     this.middlewares();
 
     // Routes
     this.routes();
   }
-
-  // async connectDB() {
-  //   try {
-  //     await db.authenticate();
-  //     console.log("Connection has been established successfully.");
-  //   } catch (error) {
-  //     console.error("Unable to connect to the database:", error);
-  //   }
-  // }
 
   middlewares() {
     // CORS
@@ -54,7 +39,8 @@ class Server {
 
   routes() {
     this.app.use(this.apiPaths.auth, require("./routes/auth"));
-    //this.app.use(this.apiPaths.users, require('../routes/users'));
+    this.app.use(this.apiPaths.users, require('./routes/users'));
+    this.app.use(this.apiPaths.menus, require('./routes/menus'));
     // this.app.use(this.formsPath, require('../routes/forms'));
   }
 

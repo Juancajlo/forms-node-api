@@ -2,9 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const models = require("../models");
-const Menu = models.Menu;
 const User = models.User;
-const Form = models.Form;
 
 
 const login = async(req, res) => {

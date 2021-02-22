@@ -11,11 +11,13 @@ const existUserByUsername = async(username) => {
 }
 
 const existUserByEmail = async(email) => {
-    await User.findOne({ where: {email} }).then(user => {
-        if(user !== null) {
-            throw new Error(`Email ${email} already exist`)
-        }
-    })
+    if(email !== undefined) {
+        await User.findOne({ where: {email} }).then(user => {
+            if(user !== null) {
+                throw new Error(`Email ${email} already exist`)
+            }
+        })
+    }
 }
 
 module.exports = {
