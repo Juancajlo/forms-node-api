@@ -16,6 +16,7 @@
   },
   "production": {
     "dialect": "postgres",
+    "database": "d7q8jhnepdn8um",
     "use_env_variable": "HCNNP",
     "dialectOptions": {
       "ssl": {
