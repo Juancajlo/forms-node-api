@@ -15,10 +15,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "admin",
-    "database": "forms_app",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "use_env_variable": "HCNNP"
   }
 }
