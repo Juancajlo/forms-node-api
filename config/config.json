@@ -15,6 +15,14 @@
     "dialect": "postgres"
   },
   "production": {
-    "use_env_variable": "postgres://pohhtkwybneuba:296ba04ff0ffff8715f031cd0a994242f84b9940ceb8773563a9a437a0e7e777@ec2-54-225-130-212.compute-1.amazonaws.com:5432/d7q8jhnepdn8um"
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "protocol": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
