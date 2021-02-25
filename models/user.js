@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       through: models.UserForm,
       as: "forms",
     });
+    User.hasMany(models.Answer, { foreignKey: "userId", as: "answers" });
   };
 
   User.prototype.toJSON = function () {

@@ -19,6 +19,14 @@ module.exports = {
           key: "id",
         },
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: "User",
+          key: "id",
+        },
+      },
       input: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -27,6 +35,9 @@ module.exports = {
         type: DataTypes.ENUM,
         values: inputValues,
         allowNull: false,
+      },
+      input_options: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
       createdAt: {
         allowNull: false,
