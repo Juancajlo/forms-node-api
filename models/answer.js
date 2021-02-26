@@ -1,5 +1,3 @@
-const { inputValues } = require("../enums/input-types");
-
 ("use strict");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
