@@ -13,19 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       input: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      input_type: {
-        type: DataTypes.ENUM,
-        values: inputValues,
-        allowNull: false,
-      },
-      input_options: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true,
       },
       questionId: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: {
           model: "Question",
           key: "id",

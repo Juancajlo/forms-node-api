@@ -1,5 +1,3 @@
-const bcrypt = require("bcrypt");
-
 const models = require("../models");
 const Menu = models.Menu;
 

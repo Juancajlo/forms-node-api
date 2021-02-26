@@ -1,7 +1,5 @@
 "use strict";
 
-const { inputValues } = require("../enums/input-types");
-
 module.exports = {
   up: async (queryInterface, DataTypes) => {
     await queryInterface.createTable("Answer", {
@@ -30,14 +28,6 @@ module.exports = {
       input: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      input_type: {
-        type: DataTypes.ENUM,
-        values: inputValues,
-        allowNull: false,
-      },
-      input_options: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
       },
       createdAt: {
         allowNull: false,

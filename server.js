@@ -8,31 +8,22 @@ class Server {
     forms: "/api/forms",
     menus: "/api/menus",
     auth: "/api/auth",
+    questions: "/api/questions",
+    answers: "/api/answers",
   };
 
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
 
-    // Middlewares
     this.middlewares();
-
-    // Routes
     this.routes();
   }
 
   middlewares() {
-    // CORS
     this.app.use(cors());
-
-    // Read and body parser
-    // parse application/x-www-form-urlencoded
     this.app.use(bodyParser.urlencoded({ extended: false }));
-
-    // parse application/json
     this.app.use(bodyParser.json());
-
-    // Public folder
     this.app.use(express.static("public"));
   }
 
@@ -40,7 +31,9 @@ class Server {
     this.app.use(this.apiPaths.auth, require("./routes/auth"));
     this.app.use(this.apiPaths.users, require("./routes/users"));
     this.app.use(this.apiPaths.menus, require("./routes/menus"));
-    // this.app.use(this.formsPath, require('../routes/forms'));
+    this.app.use(this.apiPaths.forms, require("./routes/forms"));
+    this.app.use(this.apiPaths.questions, require("./routes/questions"));
+    this.app.use(this.apiPaths.answers, require("./routes/answers"));
   }
 
   listen() {

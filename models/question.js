@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Question extends Model {
     static associate({ Answer, Form }) {
       this.belongsTo(Form, { foreignKey: "formId", as: "form" });
-      this.hasOne(Answer, { foreignKey: "questionId" });
+      this.hasMany(Answer, { foreignKey: "questionId", as: "answers" });
     }
   }
   Question.init(
@@ -12,6 +12,15 @@ module.exports = (sequelize, DataTypes) => {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      input_type: {
+        type: DataTypes.ENUM,
+        values: inputValues,
+        allowNull: false,
+      },
+      input_options: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true,
       },
       formId: {
         type: DataTypes.INTEGER,
