@@ -37,7 +37,11 @@ module.exports = (sequelize, DataTypes) => {
       as: "subMenu",
       onDelete: "CASCADE",
     });
-    Menu.belongsTo(Menu, { foreignKey: "id", as: "parentMenu" });
+    Menu.belongsTo(Menu, {
+      foreignKey: "id",
+      as: "parentMenu",
+      onDelete: "CASCADE",
+    });
     Menu.belongsTo(models.Form, { foreignKey: "formId", as: "form" });
   };
   return Menu;
