@@ -12,6 +12,7 @@ module.exports = {
       questionId: {
         type: DataTypes.INTEGER,
         allowNull: true,
+        onDelete: "CASCADE",
         references: {
           model: "Question",
           key: "id",

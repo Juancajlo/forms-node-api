@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "questionId",
         as: "answers",
         onDelete: "CASCADE",
+        hooks: true,
       });
     }
   }
