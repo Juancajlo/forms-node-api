@@ -40,6 +40,47 @@ const getTotalAnswerByQuestionId = async (req, res) => {
     });
 };
 
+const deleteQuestionById = async (req, res) => {
+  const id = req.params.id;
+
+  const question = await Question.findOne({
+    where: { id },
+  })
+    .then((question) => {
+      if (question == null) {
+        return res.status(400).json({
+          msg: "Question not found",
+        });
+      }
+
+      return question;
+    })
+    .catch((error) => {
+      res.status(500).json({
+        error: {
+          error,
+          message: `Internal server error getting question with id ${id}`,
+        },
+      });
+    });
+
+  await question
+    .destroy()
+    .then(() => {
+      res.json({
+        message: `Question with id ${id} deleted successfully`,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        error: {
+          error,
+          message: `Internal server error deleting question with id ${id}`,
+        },
+      });
+    });
+};
+
 const updateQuestion = async (req, res) => {
   const id = req.params.id;
 
@@ -111,4 +152,5 @@ module.exports = {
   createQuestion,
   updateQuestion,
   getTotalAnswerByQuestionId,
+  deleteQuestionById,
 };

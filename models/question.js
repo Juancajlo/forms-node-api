@@ -6,7 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   class Question extends Model {
     static associate({ Answer, Form }) {
       this.belongsTo(Form, { foreignKey: "formId", as: "form" });
-      this.hasMany(Answer, { foreignKey: "questionId", as: "answers" });
+      this.hasMany(Answer, {
+        foreignKey: "questionId",
+        as: "answers",
+        onDelete: "CASCADE",
+      });
     }
   }
   Question.init(

@@ -32,7 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Menu.associate = function (models) {
-    Menu.hasMany(Menu, { foreignKey: "subMenuId", as: "subMenu" });
+    Menu.hasMany(Menu, {
+      foreignKey: "subMenuId",
+      as: "subMenu",
+      onDelete: "CASCADE",
+    });
     Menu.belongsTo(Menu, { foreignKey: "id", as: "parentMenu" });
     Menu.belongsTo(models.Form, { foreignKey: "formId", as: "form" });
   };
