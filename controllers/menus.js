@@ -93,7 +93,7 @@ const deleteMenuById = async (req, res) => {
     });
 };
 
-const updateMenu = (req, res) => {
+const updateMenu = async (req, res) => {
   const id = req.params.id;
 
   const { title, subMenuId, formId } = req.body;
@@ -140,5 +140,5 @@ module.exports = {
   getMenus,
   createMenu,
   updateMenu,
-  deleteMenuById
+  deleteMenuById,
 };
