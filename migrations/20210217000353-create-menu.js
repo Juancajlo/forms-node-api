@@ -11,6 +11,7 @@ module.exports = {
       subMenuId: {
         type: DataTypes.INTEGER,
         allowNull: true,
+        onDelete: "CASCADE",
         references: {
           model: "Menu",
           key: "id",
